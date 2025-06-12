@@ -29,6 +29,7 @@ export default function Home() {
           Create a feedback board in minutes, prioritize features, and build
           product your customers will love!!.
         </div>
+        <div className="opacity-90 mb-10 bg-slate-400">Collect Feedback!</div>
         <ButtonLogin isLoggedIn={isLoggedIn} name={name} />
       </section>
       {/* PRICING */}
