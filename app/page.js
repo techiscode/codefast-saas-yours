@@ -1,13 +1,18 @@
 import ButtonLogin from "@/components/ButtonLogin";
+import { auth } from "@/auth";
 
-export default function Home() {
+export default async function Home() {
   // Test comment
-  const isLoggedIn = true;
-  const name = "Senthil";
+  // const isLoggedIn = true;
+  // const name = "Senthil";
+
+  const session = await auth();
+  console.log(session);
 
   return (
     <main>
       {/* HEADER */}
+
       <section className="bg-base-200">
         <div className="max-w-3xl mx-auto flex justify-between items-center px-8 py-2">
           <div className="font-bold">CodeFastSaaS</div>
@@ -16,7 +21,8 @@ export default function Home() {
             <a className="link link-hover">FAQ</a>
           </div>
           <div>
-            <ButtonLogin isLoggedIn={isLoggedIn} name={name} />
+            {/* <ButtonLogin isLoggedIn={isLoggedIn} name={name} /> */}
+            <ButtonLogin session={session} />
           </div>
         </div>
       </section>
@@ -30,7 +36,7 @@ export default function Home() {
           product your customers will love!!.
         </div>
         <div className="opacity-90 mb-10 bg-slate-400">Collect Feedback!</div>
-        <ButtonLogin isLoggedIn={isLoggedIn} name={name} />
+        <ButtonLogin session={session} />
       </section>
       {/* PRICING */}
       <section className="bg-base-200" id="pricing">
@@ -75,7 +81,7 @@ export default function Home() {
               ))}
             </ul>
             {/* <ButtonLogin session={session} extraStyle="w-full" /> */}
-            <ButtonLogin isLoggedIn={isLoggedIn} name={name} />
+            <ButtonLogin session={session} />
           </div>
         </div>
       </section>
