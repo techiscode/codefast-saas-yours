@@ -6,7 +6,7 @@ import Board from "@/models/Board";
 
 export async function POST(req) {
   try {
-    console.log("inside async function POST------1 ");
+    //console.log("inside async function POST------1 ");
     const body = await req.json();
 
     if (!body.name) {
@@ -15,7 +15,6 @@ export async function POST(req) {
         { status: 400 }
       );
     }
-    console.log("inside async function POST------2 ");
     const session = await auth();
 
     if (!session) {
@@ -74,12 +73,12 @@ export async function DELETE(req) {
 
     const user = await User.findById(session?.user?.id);
 
-    if (!user.hasAccess) {
-      return NextResponse.json(
-        { error: "Please subscribe first" },
-        { status: 403 }
-      );
-    }
+    // if (!user.hasAccess) {
+    //   return NextResponse.json(
+    //     { error: "Please subscribe first" },
+    //     { status: 403 }
+    //   );
+    // }
 
     await Board.deleteOne({
       _id: boardId,
@@ -90,6 +89,7 @@ export async function DELETE(req) {
     await user.save();
 
     return NextResponse.json({});
+    //the above is to close http connection
   } catch (e) {
     return NextResponse.json({ error: e.message }, { status: 500 });
   }
